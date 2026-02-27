@@ -1,42 +1,18 @@
-# sv
+# Sankkit Wilson-Hartono - Portfolio Website
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+This is my personal portfolio which will showcase my projects (as I develop
+them), skills and experience as a software engineer. I built this portfolio
+using SvelteKit, as I am very fond of the Svelte framework and enjoy using it.
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```sh
-# create a new project
-npx sv create my-app
-```
-
-To recreate this project with the same configuration:
+## Local Development
 
 ```sh
-# recreate this project
-npx sv create --template minimal --types ts --add prettier eslint sveltekit-adapter="adapter:static" tailwindcss="plugins:typography,forms" vitest="usages:unit,component" --install npm sankeetos-portfolio
-```
+# Install dependencies
+npm i
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
+# Run development server
 npm run dev
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
+# Build for production
 npm run build
 ```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
