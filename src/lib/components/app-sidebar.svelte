@@ -26,13 +26,13 @@
 </script>
 
 <Sidebar.Root bind:ref {...restProps}>
-	<Sidebar.Content>
+	<Sidebar.Content class="justify-center-safe">
 		<Sidebar.Group>
 			<Sidebar.GroupContent>
-				<Sidebar.Menu>
+				<Sidebar.Menu class="gap-8">
 					{#each data.navMain as item (item.title)}
 						<Sidebar.MenuItem>
-							<Sidebar.MenuButton class="flex justify-center text-xl font-medium">
+							<Sidebar.MenuButton class="flex justify-center text-3xl font-medium">
 								{#snippet child({ props })}
 									<a href={item.url} {...props}>
 										{item.title}
