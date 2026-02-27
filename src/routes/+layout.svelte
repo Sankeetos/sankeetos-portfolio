@@ -2,15 +2,20 @@
 	import AppSidebar from '$lib/components/app-sidebar.svelte';
 	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
 	import './layout.css';
-
+	import * as Kbd from '$lib/components/ui/kbd/index.js';
 	let { children } = $props();
 </script>
 
-<Sidebar.Provider>
+<Sidebar.Provider open={false}>
 	<Sidebar.Inset>
-		<header class="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+		<header class="flex h-16 shrink-0 items-center gap-2 px-4">
 			<h1 class="text-xl font-bold">Sankkit Wilson-Hartono</h1>
-			<Sidebar.Trigger class="ms-auto -me-1 rotate-180" />
+			<div class="ms-auto flex items-center">
+				<Kbd.Group>
+					<Kbd.Root>Ctrl + B</Kbd.Root>
+				</Kbd.Group>
+				<Sidebar.Trigger class="ms-auto -me-1 rotate-180" />
+			</div>
 		</header>
 		{@render children()}
 	</Sidebar.Inset>
