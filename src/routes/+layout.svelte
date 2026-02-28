@@ -6,6 +6,7 @@
 	import { DarkModeButton } from '$lib/components';
 	import { ModeWatcher } from 'mode-watcher';
 	import Separator from '$lib/components/ui/separator/separator.svelte';
+	import { Dock } from '$lib/components/ui/dock/index.js';
 
 	let { children } = $props();
 </script>
@@ -32,3 +33,5 @@
 	</Sidebar.Inset>
 	<AppSidebar side="right" />
 </Sidebar.Provider>
+
+<Dock class="bottom:0 fixed flex place-self-center" />
