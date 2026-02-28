@@ -10,6 +10,7 @@
 			component: any;
 			props?: Record<string, any>;
 		};
+		href: string;
 	};
 
 	const icons: Record<string, DockItem['icon']> = {
@@ -37,9 +38,9 @@
 	export let className: string;
 	export { className as class };
 	export const items: DockItem[] = [
-		{ id: '1', icon: icons['homeIcon'] },
-		{ id: '2', icon: icons['albumIcon'] },
-		{ id: '3', icon: icons['monitorIcon'] }
+		{ id: '1', icon: icons['homeIcon'], href: '/' },
+		{ id: '2', icon: icons['albumIcon'], href: '/test' },
+		{ id: '3', icon: icons['monitorIcon'], href: '/foo' }
 	];
 
 	const mouseX = useMotionValue(Infinity);
@@ -65,7 +66,7 @@
 			}}
 		>
 			{#each items as dockItem}
-				<DockItem {containerX} {mouseX}>
+				<DockItem {containerX} {mouseX} href={dockItem.href}>
 					{#if dockItem?.icon}
 						<svelte:component this={dockItem.icon.component} {...dockItem.icon.props} />
 					{/if}
