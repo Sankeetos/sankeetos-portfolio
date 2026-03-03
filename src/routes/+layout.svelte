@@ -15,7 +15,7 @@
 
 <Sidebar.Provider open={false}>
 	<Sidebar.Inset>
-		<header class="flex h-16 shrink-0 items-center gap-2 px-4 pl-10">
+		<header class="fixed flex h-16 shrink-0 items-center gap-2 place-self-end px-4 pl-10">
 			<div class="ms-auto flex items-center gap-3">
 				<DarkModeButton />
 				<div class="flex items-center">
