@@ -1,58 +1,48 @@
 <script lang="ts">
 	import * as THREE from 'three';
-	import { onMount } from 'svelte';
+	import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+	import { GLTFLoader } from 'three/examples/jsm/Addons.js';
 	import { ASPECT_RATIO, FOV } from './constants';
-	import type { ClassValue } from 'tailwind-variants';
-	import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-	// import model from '/sankkit.glb';
 
-	let props: { class?: ClassValue } = $props();
+	const w = window.innerWidth;
+	const h = window.innerHeight;
+	const scene = new THREE.Scene();
 
-	onMount(() => {
-		let loader = new GLTFLoader();
-		let scene: THREE.Scene;
-		let camera: THREE.PerspectiveCamera;
-		let renderer: THREE.WebGLRenderer;
-		let cube: THREE.Mesh<THREE.BoxGeometry, THREE.MeshBasicMaterial>;
+	const camera = new THREE.PerspectiveCamera(FOV, ASPECT_RATIO, 0.1, 1000);
+	camera.position.z = 5;
+	const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+	renderer.setSize(w, h);
+	document.body.appendChild(renderer.domElement);
 
-		function init() {
-			scene = new THREE.Scene();
-			camera = new THREE.PerspectiveCamera(FOV, ASPECT_RATIO, 0.1, 1000);
+	const ctrls = new OrbitControls(camera, renderer.domElement);
+	ctrls.enableDamping = true;
+	const center = new THREE.Vector3();
+	ctrls.target.copy(center);
+	ctrls.update();
 
-			renderer = new THREE.WebGLRenderer({
-				canvas: document.querySelector('#sankkit-model') as HTMLCanvasElement
-			});
-			renderer.setSize(window.innerWidth, window.innerHeight);
-			document.body.appendChild(renderer.domElement);
-
-			const geometry = new THREE.BoxGeometry(1, 1, 1);
-			const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-			cube = new THREE.Mesh(geometry, material);
-
-			loader.load('/sankkit.glb', function (glb) {
-				scene.add(glb.scene);
-			});
-
-			camera.position.z = 5;
-		}
-
-		function render() {
-			renderer.clear();
-			renderer.render(scene, camera);
-		}
-
-		function animate() {
-			requestAnimationFrame(animate);
-
-			cube.rotation.x += 0.005;
-			cube.rotation.y += 0.005;
-
-			render();
-		}
-
-		init();
-		animate();
+	// Load the model
+	const glbLoader = new GLTFLoader();
+	glbLoader.load('/purple_man.glb', (glb) => {
+		const sankkitModel = glb.scene;
+		scene.add(sankkitModel);
 	});
-</script>
 
-<canvas id="sankkit-model" class={['original', props.class]}></canvas>
+	var dirLight = new THREE.DirectionalLight(0xffffff, 5);
+	dirLight.position.set(600, 1000, 1500);
+	scene.add(dirLight);
+
+	function animate() {
+		requestAnimationFrame(animate);
+		renderer.render(scene, camera);
+		ctrls.update();
+	}
+
+	animate();
+
+	function handleWindowResize() {
+		camera.aspect = window.innerWidth / window.innerHeight;
+		camera.updateProjectionMatrix();
+		renderer.setSize(window.innerWidth, window.innerHeight);
+	}
+	window.addEventListener('resize', handleWindowResize, false);
+</script>
