@@ -2,8 +2,14 @@
 	import * as THREE from 'three';
 	import { onMount } from 'svelte';
 	import { ASPECT_RATIO, FOV } from './constants';
+	import type { ClassValue } from 'tailwind-variants';
+	import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+	// import model from '/sankkit.glb';
+
+	let props: { class?: ClassValue } = $props();
 
 	onMount(() => {
+		let loader = new GLTFLoader();
 		let scene: THREE.Scene;
 		let camera: THREE.PerspectiveCamera;
 		let renderer: THREE.WebGLRenderer;
@@ -22,7 +28,10 @@
 			const geometry = new THREE.BoxGeometry(1, 1, 1);
 			const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
 			cube = new THREE.Mesh(geometry, material);
-			scene.add(cube);
+
+			loader.load('/sankkit.glb', function (glb) {
+				scene.add(glb.scene);
+			});
 
 			camera.position.z = 5;
 		}
@@ -46,4 +55,4 @@
 	});
 </script>
 
-<canvas id="sankkit-model"></canvas>
+<canvas id="sankkit-model" class={['original', props.class]}></canvas>

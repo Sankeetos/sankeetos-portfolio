@@ -10,4 +10,4 @@
 	<div>Please comeback later :)</div>
 </div>
 
-<SankkitModel />
+<SankkitModel class="m-0 p-0" />
