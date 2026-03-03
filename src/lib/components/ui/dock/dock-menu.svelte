@@ -3,9 +3,11 @@
 	import { cn } from '$lib/utils';
 	import DockItem from './dock-item.svelte';
 	import { AlbumIcon, HomeIcon, MonitorIcon } from 'lucide-svelte';
+	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
 
 	type DockItem = {
 		id: string;
+		label: string;
 		icon?: {
 			component: any;
 			props?: Record<string, any>;
@@ -38,9 +40,9 @@
 	export let className: string;
 	export { className as class };
 	export const items: DockItem[] = [
-		{ id: '1', icon: icons['homeIcon'], href: '/' },
-		{ id: '2', icon: icons['albumIcon'], href: '/test' },
-		{ id: '3', icon: icons['monitorIcon'], href: '/foo' }
+		{ id: '1', label: 'Home', icon: icons['homeIcon'], href: '/' },
+		{ id: '2', label: 'About', icon: icons['albumIcon'], href: '/test' },
+		{ id: '3', label: 'Projects', icon: icons['monitorIcon'], href: '/foo' }
 	];
 
 	const mouseX = useMotionValue(Infinity);
