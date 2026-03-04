@@ -19,13 +19,14 @@
 		const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, canvas: canvas! });
 		renderer.setSize(canvas!.clientWidth, canvas!.clientHeight);
 
-		const ctrls = new OrbitControls(camera, renderer.domElement);
+		const ctrls = new OrbitControls(camera, canvas);
 		ctrls.enableDamping = true;
 
 		// Load the model
 		const glbLoader = new GLTFLoader();
 		const glb = await glbLoader.loadAsync('/purple_man.glb');
 		const sankkitModel = glb.scene;
+		sankkitModel.scale.set(1.5, 1.5, 1.5);
 		scene.add(sankkitModel);
 
 		// Create directional light
@@ -45,15 +46,12 @@
 		animate();
 
 		function handleWindowResize() {
-			camera.aspect = canvas!.clientWidth / canvas!.clientHeight;
+			camera.aspect = w / h;
 			camera.updateProjectionMatrix();
-			renderer.setSize(canvas!.clientWidth, canvas!.clientHeight);
+			renderer.setSize(w, h);
 		}
 		window.addEventListener('resize', handleWindowResize, false);
 	});
 </script>
 
-<canvas
-	id="model-canvas"
-	class="pointer-events-none top-0 left-0 z-[-1] flex h-full w-full border-none"
-></canvas>
+<canvas id="model-canvas" class="float-right flex h-screen w-screen self-end border-none"></canvas>
