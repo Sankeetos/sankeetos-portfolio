@@ -10,9 +10,12 @@
 		const h = window.innerHeight;
 		const scene = new THREE.Scene();
 
-		const camera = new THREE.PerspectiveCamera(FOV, ASPECT_RATIO, 0.1, 1000);
-		camera.position.z = 5;
-		const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+		const camera = new THREE.PerspectiveCamera(FOV, ASPECT_RATIO, 0.1, 80);
+		camera.position.z = 10;
+		camera.position.y = 2;
+
+		const canvas = document.querySelector('#c');
+		const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, canvas });
 		renderer.setSize(w, h);
 		document.body.appendChild(renderer.domElement);
 
@@ -49,3 +52,5 @@
 		window.addEventListener('resize', handleWindowResize, false);
 	});
 </script>
+
+<canvas id="c"></canvas>
