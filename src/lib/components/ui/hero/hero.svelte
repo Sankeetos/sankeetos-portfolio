@@ -1,6 +1,18 @@
-<script lang="ts">
-</script>
+<div class="flex flex-col overflow-hidden p-8 pb-0">
+	<!-- Name Line -->
+	<h1 class="text-7xl leading-tight font-bold text-purple-800 md:text-9xl">
+		Sankkit Wilson-Hartono
+	</h1>
 
-<h1 class="b-0 m-0 flex h-auto w-auto p-0 text-9xl font-bold text-purple-800">
-	Sankkit Wilson-Hartono
-</h1>
+	<!-- Role Line -->
+	<h2 class="text-5xl font-light text-gray-700 italic md:text-8xl">Software Engineer</h2>
+
+	<!-- Status Info -->
+</div>
+
+<div class="m-0 w-lg p-8 pb-0">
+	<div class="mt-4 flex flex-col gap-2 text-xl text-gray-600 md:text-2xl">
+		<p>Welcome, this is my portfolio. It is currently a work in progress.</p>
+		<p class="font-medium text-purple-600">Please come back later :)</p>
+	</div>
+</div>

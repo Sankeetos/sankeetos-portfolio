@@ -11,7 +11,7 @@
 		const scene = new THREE.Scene();
 
 		const camera = new THREE.PerspectiveCamera(FOV, ASPECT_RATIO, 0.1, 80);
-		camera.position.z = 10;
+		camera.position.z = 11;
 		camera.position.y = 1;
 
 		// Setup renderer to be inside of the canvas
@@ -21,6 +21,10 @@
 
 		const ctrls = new OrbitControls(camera, canvas);
 		ctrls.enableDamping = true;
+
+		// Set min and max distance to stop model from getting to large/small
+		ctrls.maxDistance = 13;
+		ctrls.minDistance = 11.5;
 
 		// Load the model
 		const glbLoader = new GLTFLoader();
@@ -46,12 +50,18 @@
 		animate();
 
 		function handleWindowResize() {
-			camera.aspect = w / h;
+			const newWidth = canvas!.clientWidth;
+			const newHeight = canvas!.clientHeight;
+
+			camera.aspect = newWidth / newHeight;
 			camera.updateProjectionMatrix();
-			renderer.setSize(w, h);
+			renderer.setSize(newWidth, newHeight);
 		}
 		window.addEventListener('resize', handleWindowResize, false);
 	});
 </script>
 
-<canvas id="model-canvas" class="float-right flex h-screen w-screen self-end border-none"></canvas>
+<canvas
+	id="model-canvas"
+	class="fixed top-0 float-right mr-35 flex h-full w-full justify-self-end overflow-hidden border-none"
+></canvas>
