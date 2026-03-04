@@ -12,12 +12,12 @@
 
 		const camera = new THREE.PerspectiveCamera(FOV, ASPECT_RATIO, 0.1, 80);
 		camera.position.z = 10;
-		camera.position.y = 2;
+		camera.position.y = 1;
 
-		const canvas = document.querySelector('#c');
-		const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, canvas });
-		renderer.setSize(w, h);
-		document.body.appendChild(renderer.domElement);
+		// Setup renderer to be inside of the canvas
+		const canvas = document.getElementById('model-canvas');
+		const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, canvas: canvas! });
+		renderer.setSize(canvas!.clientWidth, canvas!.clientHeight);
 
 		const ctrls = new OrbitControls(camera, renderer.domElement);
 		ctrls.enableDamping = true;
@@ -45,12 +45,15 @@
 		animate();
 
 		function handleWindowResize() {
-			camera.aspect = window.innerWidth / window.innerHeight;
+			camera.aspect = canvas!.clientWidth / canvas!.clientHeight;
 			camera.updateProjectionMatrix();
-			renderer.setSize(window.innerWidth, window.innerHeight);
+			renderer.setSize(canvas!.clientWidth, canvas!.clientHeight);
 		}
 		window.addEventListener('resize', handleWindowResize, false);
 	});
 </script>
 
-<canvas id="c"></canvas>
+<canvas
+	id="model-canvas"
+	class="pointer-events-none top-0 left-0 z-[-1] flex h-full w-full border-none"
+></canvas>
