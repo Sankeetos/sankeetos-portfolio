@@ -6,15 +6,11 @@
 	import { DarkModeButton } from '$lib/components';
 	import { ModeWatcher } from 'mode-watcher';
 	import { Dock } from '$lib/components/ui/dock/index.js';
-	import MdiGithub from '~icons/mdi/github';
-	import Button from '$lib/components/ui/button/button.svelte';
 
 	let { children } = $props();
 </script>
 
 <ModeWatcher />
-
-<MdiGithub />
 
 <Sidebar.Provider open={false}>
 	<Sidebar.Inset>
