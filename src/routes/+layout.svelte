@@ -19,7 +19,7 @@
 			<div class="ms-auto flex items-center gap-3">
 				<DarkModeButton />
 				<div class="flex items-center">
-					<Kbd.Group>
+					<Kbd.Group class="hidden md:block">
 						<Kbd.Root>Ctrl + B</Kbd.Root>
 					</Kbd.Group>
 					<Sidebar.Trigger class="ms-auto -me-1 rotate-180" />

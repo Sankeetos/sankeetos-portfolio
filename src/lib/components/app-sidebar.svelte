@@ -32,7 +32,7 @@
 				<Sidebar.Menu class="gap-0">
 					{#each data.navMain as item (item.title)}
 						<Sidebar.MenuItem>
-							<Sidebar.MenuButton class="text-truncate flex h-auto text-5xl">
+							<Sidebar.MenuButton class="text-truncate flex h-auto text-xl md:text-5xl">
 								{#snippet child({ props })}
 									<a href={item.url} {...props}>
 										{item.title}
