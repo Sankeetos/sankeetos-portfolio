@@ -2,20 +2,20 @@
 	import * as THREE from 'three';
 	import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 	import { GLTFLoader } from 'three/examples/jsm/Addons.js';
-	import { ASPECT_RATIO, FOV } from './constants';
+	import { FOV } from './constants';
 	import { onMount } from 'svelte';
 
 	onMount(async () => {
-		const w = window.innerWidth;
-		const h = window.innerHeight;
 		const scene = new THREE.Scene();
+		// Setup renderer to be inside of the canvas
+		const canvas = document.getElementById('model-canvas');
 
-		const camera = new THREE.PerspectiveCamera(FOV, ASPECT_RATIO, 0.1, 80);
+		const ASPECT_RATIO = canvas!.clientWidth / canvas!.clientWidth;
+
+		const camera = new THREE.PerspectiveCamera(FOV, 0.1, 80);
 		camera.position.z = 11;
 		camera.position.y = 1;
 
-		// Setup renderer to be inside of the canvas
-		const canvas = document.getElementById('model-canvas');
 		const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, canvas: canvas! });
 		renderer.setSize(canvas!.clientWidth, canvas!.clientHeight);
 

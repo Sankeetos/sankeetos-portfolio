@@ -26,7 +26,7 @@
 				</div>
 			</div>
 		</header>
-		<div class="pt-10 pl-10">
+		<div class="pt-10 md:pl-10">
 			{@render children()}
 		</div>
 	</Sidebar.Inset>
