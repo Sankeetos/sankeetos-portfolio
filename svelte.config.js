@@ -5,6 +5,7 @@ const config = {
     kit: {
         paths: {
             base: "/sankeetos-portfolio",
+            assets: "/sankeetos-portfolio",
         },
         adapter: adapter({
             pages: "build",
