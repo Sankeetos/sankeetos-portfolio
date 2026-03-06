@@ -5,13 +5,16 @@
 	import * as Kbd from '$lib/components/ui/kbd/index.js';
 	import { DarkModeButton } from '$lib/components';
 	import { ModeWatcher } from 'mode-watcher';
-	import Separator from '$lib/components/ui/separator/separator.svelte';
 	import { Dock } from '$lib/components/ui/dock/index.js';
+	import MdiGithub from '~icons/mdi/github';
+	import Button from '$lib/components/ui/button/button.svelte';
 
 	let { children } = $props();
 </script>
 
 <ModeWatcher />
+
+<MdiGithub size="5em" />
 
 <Sidebar.Provider open={false}>
 	<Sidebar.Inset>

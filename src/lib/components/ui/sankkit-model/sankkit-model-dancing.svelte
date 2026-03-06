@@ -44,7 +44,7 @@
 		function animate() {
 			requestAnimationFrame(animate);
 
-			mixer.update(1 / 130);
+			mixer.update(1 / 100);
 
 			renderer.render(scene, camera);
 		}
