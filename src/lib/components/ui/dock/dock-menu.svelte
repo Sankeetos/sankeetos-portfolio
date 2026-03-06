@@ -2,7 +2,7 @@
 	import { Motion, useMotionValue } from 'svelte-motion';
 	import { cn } from '$lib/utils';
 	import DockItem from './dock-item.svelte';
-	import { AlbumIcon, HomeIcon, MonitorIcon } from 'lucide-svelte';
+	import { User, House, MonitorIcon, LibraryBig, Camera } from 'lucide-svelte';
 	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
 
 	type DockItem = {
@@ -17,19 +17,31 @@
 
 	const icons: Record<string, DockItem['icon']> = {
 		homeIcon: {
-			component: HomeIcon,
+			component: House,
 			props: {
 				size: 32
 			}
 		},
-		albumIcon: {
-			component: AlbumIcon,
+		aboutIcon: {
+			component: User,
 			props: {
 				size: 32
 			}
 		},
-		monitorIcon: {
+		projectsIcon: {
 			component: MonitorIcon,
+			props: {
+				size: 32
+			}
+		},
+		skillsIcon: {
+			component: LibraryBig,
+			props: {
+				size: 32
+			}
+		},
+		cameraIcon: {
+			component: Camera,
 			props: {
 				size: 32
 			}
@@ -41,8 +53,10 @@
 	export { className as class };
 	export const items: DockItem[] = [
 		{ id: '1', label: 'Home', icon: icons['homeIcon'], href: '/' },
-		{ id: '2', label: 'About', icon: icons['albumIcon'], href: '/test' },
-		{ id: '3', label: 'Projects', icon: icons['monitorIcon'], href: '/foo' }
+		{ id: '2', label: 'About', icon: icons['aboutIcon'], href: '/test' },
+		{ id: '3', label: 'Projects', icon: icons['projectsIcon'], href: '/foo' },
+		{ id: '4', label: 'Skills', icon: icons['skillsIcon'], href: '/' },
+		{ id: '5', label: 'Photos', icon: icons['cameraIcon'], href: '/' }
 	];
 
 	const mouseX = useMotionValue(Infinity);

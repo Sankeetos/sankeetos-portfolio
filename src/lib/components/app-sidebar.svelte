@@ -19,6 +19,10 @@
 			{
 				title: 'Skills',
 				url: '/'
+			},
+			{
+				title: 'Photos',
+				url: '/'
 			}
 		]
 	};
