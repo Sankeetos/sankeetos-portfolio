@@ -3,6 +3,7 @@
 	import { GLTFLoader } from 'three/examples/jsm/Addons.js';
 	import { FOV } from './constants';
 	import { onMount } from 'svelte';
+	import { asset } from '$app/paths';
 
 	let sankkitModel: THREE.Group<THREE.Object3DEventMap>;
 
@@ -23,7 +24,7 @@
 
 		// Load the model
 		const glbLoader = new GLTFLoader();
-		const glb = await glbLoader.loadAsync('/purple_man_dance.glb');
+		const glb = await glbLoader.loadAsync(asset('/purple_man_dance.glb'));
 		sankkitModel = glb.scene;
 
 		const isMobile = window.innerWidth < 768;
