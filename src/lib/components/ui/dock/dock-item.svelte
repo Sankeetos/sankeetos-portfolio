@@ -46,7 +46,7 @@
 		duration: 0.8
 	}}
 >
-	<a {href}>
+	<a href="/">
 		<div
 			role="button"
 			bind:this={dockItem}
