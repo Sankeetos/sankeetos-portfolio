@@ -29,9 +29,16 @@
 
 		const isMobile = window.innerWidth < 768;
 		function resizeModel() {
-			isMobile ? sankkitModel.scale.set(0.8, 0.8, 0.8) : sankkitModel.scale.set(1.2, 1.2, 1.2);
+			if (isMobile) {
+				sankkitModel.scale.set(1.5, 1.5, 1.5);
+				camera.position.z = 2.5;
+				camera.position.y = 1.4;
+			} else {
+				sankkitModel.scale.set(1.2, 1.2, 1.2);
+				camera.position.z = 2;
+				camera.position.y = 1;
+			}
 		}
-
 		resizeModel();
 
 		scene.add(sankkitModel);

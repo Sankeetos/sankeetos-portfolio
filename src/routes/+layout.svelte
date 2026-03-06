@@ -14,7 +14,7 @@
 
 <ModeWatcher />
 
-<MdiGithub size="5em" />
+<MdiGithub />
 
 <Sidebar.Provider open={false}>
 	<Sidebar.Inset>
@@ -36,4 +36,9 @@
 	<AppSidebar side="right" />
 </Sidebar.Provider>
 
-<Dock class="bottom:0 fixed flex place-self-center" />
+<div
+	class="bottom-0 left-0 flex flex-col items-center justify-items-center gap-3 md:fixed md:right-0 md:bottom-6"
+>
+	<Dock />
+	<div class="text-xs opacity-50">© 2026 - All rights reserved</div>
+</div>
