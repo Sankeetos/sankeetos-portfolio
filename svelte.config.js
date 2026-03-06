@@ -3,7 +3,9 @@ import adapter from "@sveltejs/adapter-static";
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
     kit: {
-        paths: "sankeetos-portfolio",
+        paths: {
+            base: "sankeetos-portfolio",
+        },
         adapter: adapter({
             pages: "build",
             assets: "build",
