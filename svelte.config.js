@@ -5,7 +5,7 @@ import process from "node:process";
 const config = {
     kit: {
         paths: {
-            base: process.argv.includes("dev") ? "" : "/sankeetos-portfolio",
+            base: "https://sankkitwilson.dev",
         },
         adapter: adapter({
             pages: "build",
