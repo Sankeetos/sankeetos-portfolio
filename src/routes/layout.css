@@ -130,7 +130,7 @@
 
 @layer utilities {
   .text-stroke {
-    -webkit-text-stroke:6px var(--primary-foreground);
+    -webkit-text-stroke:10px var(--background);
     paint-order: stroke fill; /* Draws stroke first, then fills over it */
 
   }
