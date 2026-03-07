@@ -54,6 +54,8 @@
 		"vitest-browser-svelte": "^2.0.2"
 	},
 	"dependencies": {
+		"@fontsource-variable/special-gothic": "^5.2.2",
+		"@fontsource/pinyon-script": "^5.2.8",
 		"lucide-svelte": "^0.575.0",
 		"mode-watcher": "^1.1.0",
 		"svelte-motion": "^0.12.2",
