@@ -11,7 +11,7 @@
 </div>
 
 <div class="p-8">
-	<div class="mt-4 flex flex-col gap-2 text-sm text-gray-600 md:text-2xl">
+	<div class="flex flex-col gap-2 text-sm text-gray-600 md:text-2xl">
 		<p class="w-auto text-ellipsis md:text-clip">
 			Welcome, this is my portfolio. It is currently a work in progress.
 		</p>

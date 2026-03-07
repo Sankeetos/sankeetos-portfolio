@@ -30,8 +30,6 @@
 		const isMobile = window.innerWidth < 768;
 		function resizeModel() {
 			sankkitModel.scale.set(1.5, 1.5, 1.5);
-			// camera.position.z = 2.5;
-			// camera.position.y = 1.4;
 		}
 		resizeModel();
 
@@ -55,9 +53,10 @@
 		function handleWindowResize() {
 			const newWidth = window.innerWidth;
 			const newHeight = window.outerWidth;
-			camera.aspect = newWidth / newHeight;
+			// camera.aspect = newWidth / newHeight;
 			resizeModel();
 			renderer.setSize(newWidth, newHeight);
+			camera.updateProjectionMatrix();
 		}
 		window.addEventListener('resize', handleWindowResize, false);
 	});
