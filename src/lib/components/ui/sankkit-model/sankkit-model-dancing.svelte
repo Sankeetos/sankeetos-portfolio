@@ -14,11 +14,11 @@
 		const canvas = document.getElementById('model-canvas');
 
 		// Width of the element divded by the height, to not get a squished image
-		const ASPECT_RATIO = canvas!.clientWidth / canvas!.clientWidth;
+		const ASPECT_RATIO = window.innerWidth / window.innerHeight;
 
 		const camera = new THREE.PerspectiveCamera(FOV, ASPECT_RATIO, 0.1, 80);
 		camera.position.z = 2;
-		camera.position.y = 1;
+		camera.position.y = 1.4;
 		const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, canvas: canvas! });
 		renderer.setSize(canvas!.clientWidth, canvas!.clientHeight);
 
@@ -29,15 +29,9 @@
 
 		const isMobile = window.innerWidth < 768;
 		function resizeModel() {
-			if (isMobile) {
-				sankkitModel.scale.set(1.5, 1.5, 1.5);
-				camera.position.z = 2.5;
-				camera.position.y = 1.4;
-			} else {
-				sankkitModel.scale.set(1.2, 1.2, 1.2);
-				camera.position.z = 2;
-				camera.position.y = 1;
-			}
+			sankkitModel.scale.set(1.5, 1.5, 1.5);
+			// camera.position.z = 2.5;
+			// camera.position.y = 1.4;
 		}
 		resizeModel();
 
@@ -59,8 +53,8 @@
 		animate();
 
 		function handleWindowResize() {
-			const newWidth = canvas!.clientWidth;
-			const newHeight = canvas!.clientHeight;
+			const newWidth = window.innerWidth;
+			const newHeight = window.outerWidth;
 			camera.aspect = newWidth / newHeight;
 			resizeModel();
 			renderer.setSize(newWidth, newHeight);
@@ -71,5 +65,5 @@
 
 <canvas
 	id="model-canvas"
-	class="r-[-20%] pointer-events-none flex h-full w-full justify-self-end overflow-hidden border-none md:fixed md:top-10 md:right-0"
+	class="r-[-20%] pointer-events-none flex h-full w-full justify-self-end overflow-hidden border-none md:absolute md:top-10 md:right-0"
 ></canvas>
