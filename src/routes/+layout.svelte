@@ -6,6 +6,7 @@
 	import { DarkModeButton } from '$lib/components';
 	import { ModeWatcher } from 'mode-watcher';
 	import { Dock } from '$lib/components/ui/dock/index.js';
+	import { isMacOS } from '$lib/utils/os.utils';
 
 	let { children } = $props();
 </script>
@@ -19,7 +20,11 @@
 				<DarkModeButton />
 				<div class="flex items-center">
 					<Kbd.Group class="hidden md:block">
-						<Kbd.Root>Ctrl + B</Kbd.Root>
+						{#if isMacOS()}
+							<Kbd.Root>⌘ + B</Kbd.Root>
+						{:else}
+							<Kbd.Root>Ctrl + B</Kbd.Root>
+						{/if}
 					</Kbd.Group>
 					<Sidebar.Trigger class="ms-auto -me-1 rotate-180" />
 				</div>
