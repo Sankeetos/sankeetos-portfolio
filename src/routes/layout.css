@@ -132,6 +132,10 @@
   .text-stroke {
     -webkit-text-stroke:10px var(--background);
     paint-order: stroke fill; /* Draws stroke first, then fills over it */
+  }
 
+  .text-stroke-small {
+    -webkit-text-stroke:3px var(--background);
+    paint-order: stroke fill; /* Draws stroke first, then fills over it */
   }
 }
