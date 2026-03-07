@@ -1,7 +1,11 @@
 <div class="flex flex-col p-4 pb-15 text-purple-600">
-	<h1 class="text-4xl font-semibold md:text-7xl lg:text-9xl">Sankkit Wilson-Hartono</h1>
+	<h1 class="self-start text-3xl font-semibold text-nowrap md:text-6xl lg:text-9xl">
+		Sankkit Wilson-Hartono
+	</h1>
 
-	<h2 class="-mt-2 font-pinyon text-4xl md:-mt-2 md:ml-4 md:text-7xl lg:text-9xl">
+	<h2
+		class="text-stroke -mt-2 ml-[40vw] font-pinyon text-3xl font-bold text-nowrap md:-mt-6 md:ml-[40vw] md:text-6xl lg:-mt-13 lg:ml-[40vw] lg:text-9xl"
+	>
 		Software Engineer
 	</h2>
 </div>
