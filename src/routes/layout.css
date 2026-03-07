@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 @import "tw-animate-css";
+@import "@fontsource/pinyon-script";
+@import "@fontsource-variable/special-gothic";
+
+
 
 @custom-variant dark (&:is(.dark *));
 
@@ -74,6 +78,10 @@
 }
 
 @theme inline {
+  --font-pinyon: "Pinyon Script", cursive;
+  --font-sans: "Special Gothic Variable", ui-sans-serif, system-ui, sans-serif;
+
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
