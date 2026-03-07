@@ -55,9 +55,9 @@ const icons: Record<string, MenuItem["icon"]> = {
  * The various different menu items for navigating the portfolio
  */
 export const menuItems: MenuItem[] = [
-    { id: "1", label: "Home", icon: icons["homeIcon"], href: "#" },
-    { id: "2", label: "About", icon: icons["aboutIcon"], href: "#About" },
-    { id: "3", label: "Projects", icon: icons["projectsIcon"], href: "#" },
-    { id: "4", label: "Skills", icon: icons["skillsIcon"], href: "#" },
-    { id: "5", label: "Photos", icon: icons["cameraIcon"], href: "#" },
+    { id: "1", label: "Home", icon: icons["homeIcon"], href: "/#" },
+    { id: "2", label: "About", icon: icons["aboutIcon"], href: "/#About" },
+    { id: "3", label: "Projects", icon: icons["projectsIcon"], href: "/#" },
+    { id: "4", label: "Skills", icon: icons["skillsIcon"], href: "/#" },
+    { id: "5", label: "Photos", icon: icons["cameraIcon"], href: "/#" },
 ];
