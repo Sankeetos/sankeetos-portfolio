@@ -27,7 +27,6 @@
 		const glb = await glbLoader.loadAsync(asset('/purple_man_dance.glb'));
 		sankkitModel = glb.scene;
 
-		const isMobile = window.innerWidth < 768;
 		function resizeModel() {
 			sankkitModel.scale.set(1.5, 1.5, 1.5);
 		}

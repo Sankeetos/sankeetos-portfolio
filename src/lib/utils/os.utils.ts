@@ -3,11 +3,5 @@
  * @returns True if on MacOS or false otherwise.
  */
 export const isMacOS = () => {
-    const platform = globalThis.navigator.userAgentData.platform;
-
-    if (platform == "macOS") {
-        return true;
-    }
-
-    return false;
+	return false; // will have to fix this
 };
