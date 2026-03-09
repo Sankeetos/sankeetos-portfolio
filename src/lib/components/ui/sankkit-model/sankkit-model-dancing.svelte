@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as THREE from 'three';
 	import { GLTFLoader } from 'three/examples/jsm/Addons.js';
-	import { FOV } from './constants';
+	import { FOV, LARGE_SCALE, MIN_SCREEN_WIDTH, SMALL_SCALE } from './constants';
 	import { onMount } from 'svelte';
 	import { asset } from '$app/paths';
 
@@ -19,6 +19,8 @@
 		const camera = new THREE.PerspectiveCamera(FOV, ASPECT_RATIO, 0.1, 80);
 		camera.position.z = 2;
 		camera.position.y = 1.4;
+		const defaultPosition = new THREE.Vector3(0, 1.5, 0);
+		camera.lookAt(defaultPosition);
 		const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, canvas: canvas! });
 		renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -49,13 +51,23 @@
 			camera.aspect = width / height;
 			camera.updateProjectionMatrix();
 
-			renderer.setSize(width, height);
+			// Scale renderer and camera based on current width
+			if (width > MIN_SCREEN_WIDTH) {
+				// Mobile or Tablet scales
+				renderer.setSize(width, height);
+				camera.lookAt(defaultPosition);
+			} else {
+				// Laptop or Above scales
+				renderer.setSize(window.outerWidth, window.outerHeight);
+				const center = new THREE.Vector3();
+				camera.lookAt(center);
+				camera.position.z = 2;
+				camera.position.y = 1.4;
+			}
 
 			// Update model size based on current width
-			if (sankkitModel) {
-				const responsiveScale = width < 768 ? 0.6 : 1.5;
-				sankkitModel.scale.set(responsiveScale, responsiveScale, responsiveScale);
-			}
+			const responsiveScale = width < MIN_SCREEN_WIDTH ? SMALL_SCALE : LARGE_SCALE;
+			sankkitModel.scale.set(responsiveScale, responsiveScale, responsiveScale);
 		}
 		window.addEventListener('resize', handleWindowResize, false);
 
@@ -65,5 +77,5 @@
 
 <canvas
 	id="model-canvas"
-	class="r-[-20%] pointer-events-none top-10 flex justify-self-end overflow-hidden border-none md:absolute md:right-0"
+	class="pointer-events-none absolute top-0 flex justify-self-end overflow-hidden border-none md:right-0"
 ></canvas>

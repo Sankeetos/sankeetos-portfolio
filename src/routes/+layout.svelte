@@ -37,9 +37,7 @@
 	<AppSidebar side="right" />
 </Sidebar.Provider>
 
-<div
-	class="bottom-0 left-0 flex flex-col items-center justify-items-center gap-3 md:fixed md:right-0 md:bottom-6"
->
+<div class="fixed right-0 bottom-6 left-0 flex flex-col items-center justify-items-center gap-3">
 	<Dock />
 	<div class="text-xs opacity-50">© 2026 - All rights reserved</div>
 </div>
