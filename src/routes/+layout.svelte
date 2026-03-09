@@ -37,7 +37,13 @@
 	<AppSidebar side="right" />
 </Sidebar.Provider>
 
-<div class="fixed right-0 bottom-6 left-0 flex flex-col items-center justify-items-center gap-3">
-	<Dock />
-	<div class="text-xs opacity-50">© 2026 - All rights reserved</div>
-</div>
+<footer
+	class="footer flex flex-col items-center justify-center gap-4 overflow-x-clip p-4 text-current sm:grid-flow-col sm:flex-row sm:justify-between"
+>
+	<aside class="mx-auto grid-flow-col items-center sm:mx-0">
+		<div class="flex gap-2 text-sm">
+			<p class="font-pinyon font-bold">Sankkit Wilson-Hartono</p>
+			<p>| © 2026 - All rights reserved</p>
+		</div>
+	</aside>
+</footer>

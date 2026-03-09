@@ -37,18 +37,6 @@ const icons: Record<string, MenuItem["icon"]> = {
             size: 32,
         },
     },
-    skillsIcon: {
-        component: LibraryBig,
-        props: {
-            size: 32,
-        },
-    },
-    cameraIcon: {
-        component: Camera,
-        props: {
-            size: 32,
-        },
-    },
 };
 
 /**
@@ -56,8 +44,6 @@ const icons: Record<string, MenuItem["icon"]> = {
  */
 export const menuItems: MenuItem[] = [
     { id: "1", label: "Home", icon: icons["homeIcon"], href: "/#" },
-    { id: "2", label: "About", icon: icons["aboutIcon"], href: "/#About" },
-    { id: "3", label: "Projects", icon: icons["projectsIcon"], href: "/#" },
-    { id: "4", label: "Skills", icon: icons["skillsIcon"], href: "/#" },
-    { id: "5", label: "Photos", icon: icons["cameraIcon"], href: "/#" },
+    { id: "2", label: "About", icon: icons["aboutIcon"], href: "/#about" },
+    { id: "3", label: "Experience", icon: icons["projectsIcon"], href: "/" },
 ];
