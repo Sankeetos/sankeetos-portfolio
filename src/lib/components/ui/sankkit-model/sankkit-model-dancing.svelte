@@ -20,17 +20,12 @@
 		camera.position.z = 2;
 		camera.position.y = 1.4;
 		const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, canvas: canvas! });
-		renderer.setSize(canvas!.clientWidth, canvas!.clientHeight);
+		renderer.setSize(window.innerWidth, window.innerHeight);
 
 		// Load the model
 		const glbLoader = new GLTFLoader();
 		const glb = await glbLoader.loadAsync(asset('/purple_man_dance.glb'));
 		sankkitModel = glb.scene;
-
-		function resizeModel() {
-			sankkitModel.scale.set(1.5, 1.5, 1.5);
-		}
-		resizeModel();
 
 		scene.add(sankkitModel);
 
@@ -41,27 +36,34 @@
 
 		function animate() {
 			requestAnimationFrame(animate);
-
 			mixer.update(1 / 100);
-
 			renderer.render(scene, camera);
 		}
 
 		animate();
 
 		function handleWindowResize() {
-			const newWidth = window.innerWidth;
-			const newHeight = window.outerWidth;
-			// camera.aspect = newWidth / newHeight;
-			resizeModel();
-			renderer.setSize(newWidth, newHeight);
+			const width = window.innerWidth;
+			const height = window.innerHeight;
+
+			camera.aspect = width / height;
 			camera.updateProjectionMatrix();
+
+			renderer.setSize(width, height);
+
+			// Update model size based on current width
+			if (sankkitModel) {
+				const responsiveScale = width < 768 ? 0.6 : 1.5;
+				sankkitModel.scale.set(responsiveScale, responsiveScale, responsiveScale);
+			}
 		}
 		window.addEventListener('resize', handleWindowResize, false);
+
+		handleWindowResize();
 	});
 </script>
 
 <canvas
 	id="model-canvas"
-	class="r-[-20%] pointer-events-none flex h-full w-full justify-self-end overflow-hidden border-none md:absolute md:top-10 md:right-0"
+	class="r-[-20%] pointer-events-none top-10 flex justify-self-end overflow-hidden border-none md:absolute md:right-0"
 ></canvas>
