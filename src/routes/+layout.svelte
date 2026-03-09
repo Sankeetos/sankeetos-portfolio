@@ -38,12 +38,10 @@
 </Sidebar.Provider>
 
 <footer
-	class="footer flex flex-col items-center justify-center gap-4 overflow-x-clip p-4 text-current sm:grid-flow-col sm:flex-row sm:justify-between"
+	class="footer fixed inset-x-0 bottom-5 flex w-full flex-col items-center justify-items-center md:left-5 md:w-fit"
 >
-	<aside class="mx-auto grid-flow-col items-center sm:mx-0">
-		<div class="flex gap-2 text-sm">
-			<p class="font-pinyon font-bold">Sankkit Wilson-Hartono</p>
-			<p>| © 2026 - All rights reserved</p>
-		</div>
-	</aside>
+	<div class="flex gap-2 text-sm">
+		<p class="font-pinyon font-bold">Sankkit Wilson-Hartono</p>
+		<p>| © 2026 - All rights reserved</p>
+	</div>
 </footer>
