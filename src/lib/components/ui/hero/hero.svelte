@@ -13,7 +13,7 @@
 	</h2>
 </div>
 
-<div class="md:p-8">
+<div class="mt-65 p-4 md:p-8">
 	<div class="flex flex-col gap-2 text-sm text-gray-600 md:text-2xl">
 		<p class="w-auto text-ellipsis md:text-clip">
 			Welcome, this is my portfolio. It is currently a work in progress.

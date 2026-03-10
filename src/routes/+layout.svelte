@@ -35,7 +35,7 @@
 		<header class="fixed flex h-16 shrink-0 items-center gap-2 place-self-end px-4 pl-10">
 			<div class="ms-auto flex items-center gap-3">
 				<DarkModeButton />
-				<div class="flex items-center">
+				<div class="flex items-center gap-0">
 					<Kbd.Group class="hidden md:block">
 						{#if isMacOS()}
 							<Kbd.Root>⌘ + B</Kbd.Root>
@@ -47,7 +47,7 @@
 				</div>
 			</div>
 		</header>
-		<div class="flex w-full max-w-7xl shrink-0 grow flex-col p-5 pt-10">
+		<div class="flex w-full max-w-7xl shrink-0 grow flex-col pt-10 md:p-5">
 			{@render children()}
 		</div>
 	</Sidebar.Inset>
