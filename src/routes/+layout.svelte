@@ -47,7 +47,7 @@
 				</div>
 			</div>
 		</header>
-		<div class="pt-10 md:pl-5">
+		<div class="flex w-full max-w-7xl shrink-0 grow flex-col p-5 pt-10">
 			{@render children()}
 		</div>
 	</Sidebar.Inset>
