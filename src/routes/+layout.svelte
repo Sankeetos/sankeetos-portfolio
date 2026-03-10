@@ -64,7 +64,7 @@
 	</div>
 
 	<div class="flex gap-4">
-		<a href="https://github.com" aria-label="GitHub">
+		<a href="https://github.com/Sankeetos" aria-label="GitHub">
 			<Icon
 				icon="mdi:github"
 				width={iconSize}
@@ -72,7 +72,7 @@
 				class="transition-colors hover:text-purple-300"
 			/>
 		</a>
-		<a href="https://linkedin.com" aria-label="LinkedIn">
+		<a href="https://www.linkedin.com/in/sankkit-wilson-hartono/" aria-label="LinkedIn">
 			<Icon
 				icon="mdi:linkedin"
 				width={iconSize}
@@ -80,7 +80,7 @@
 				class="transition-colors hover:text-blue-500"
 			/>
 		</a>
-		<a href="https://instagram.com" aria-label="Instagram">
+		<a href="https://instagram.com/sankkit" aria-label="Instagram">
 			<Icon
 				icon="mdi:instagram"
 				width={iconSize}
