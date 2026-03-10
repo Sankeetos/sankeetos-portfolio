@@ -77,5 +77,5 @@
 
 <canvas
 	id="model-canvas"
-	class="pointer-events-none absolute top-0 right-0 flex overflow-hidden border-none md:right-0"
+	class="pointer-events-none absolute top-0 right-0 flex overflow-hidden border-none md:top-0 md:right-0"
 ></canvas>
