@@ -61,7 +61,5 @@
 	});
 </script>
 
-<canvas
-	id="model-canvas"
-	class="fixed top-0 float-right mr-35 flex h-full w-full justify-self-end overflow-hidden border-none"
+<canvas id="model-canvas" class="r-0 fixed top-0 float-right flex overflow-hidden border-none"
 ></canvas>

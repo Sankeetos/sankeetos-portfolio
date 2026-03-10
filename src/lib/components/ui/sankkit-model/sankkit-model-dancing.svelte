@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as THREE from 'three';
 	import { GLTFLoader } from 'three/examples/jsm/Addons.js';
-	import { FOV, LARGE_SCALE, MIN_SCREEN_WIDTH, SMALL_SCALE } from './constants';
+	import { FOV, LARGE_SCALE, DEFAULT_MOBILE_BREAKPOINT, SMALL_SCALE } from './constants';
 	import { onMount } from 'svelte';
 	import { asset } from '$app/paths';
 
@@ -52,7 +52,7 @@
 			camera.updateProjectionMatrix();
 
 			// Scale renderer and camera based on current width
-			if (width > MIN_SCREEN_WIDTH) {
+			if (width > DEFAULT_MOBILE_BREAKPOINT) {
 				// Mobile or Tablet scales
 				renderer.setSize(width, height);
 				camera.lookAt(defaultPosition);
@@ -66,7 +66,7 @@
 			}
 
 			// Update model size based on current width
-			const responsiveScale = width < MIN_SCREEN_WIDTH ? SMALL_SCALE : LARGE_SCALE;
+			const responsiveScale = width < DEFAULT_MOBILE_BREAKPOINT ? SMALL_SCALE : LARGE_SCALE;
 			sankkitModel.scale.set(responsiveScale, responsiveScale, responsiveScale);
 		}
 		window.addEventListener('resize', handleWindowResize, false);
@@ -77,5 +77,5 @@
 
 <canvas
 	id="model-canvas"
-	class="pointer-events-none absolute top-0 flex justify-self-end overflow-hidden border-none md:right-0"
+	class="pointer-events-none absolute top-0 right-0 flex overflow-hidden border-none md:right-0"
 ></canvas>

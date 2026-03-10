@@ -1,6 +1,5 @@
 import { MediaQuery } from "svelte/reactivity";
-
-const DEFAULT_MOBILE_BREAKPOINT = 768;
+import { DEFAULT_MOBILE_BREAKPOINT } from "../components/ui/sankkit-model/constants.ts";
 
 export class IsMobile extends MediaQuery {
 	constructor(breakpoint: number = DEFAULT_MOBILE_BREAKPOINT) {
