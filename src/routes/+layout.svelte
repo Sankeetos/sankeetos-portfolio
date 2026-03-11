@@ -5,7 +5,6 @@
 	import * as Kbd from '$lib/components/ui/kbd/index.js';
 	import { DarkModeButton } from '$lib/components';
 	import { ModeWatcher } from 'mode-watcher';
-	import { isMacOS } from '$lib/utils/os.utils';
 	import Icon from '@iconify/svelte';
 	import { onMount } from 'svelte';
 	import { DEFAULT_MOBILE_BREAKPOINT } from '$lib/components/ui/sankkit-model/constants';
