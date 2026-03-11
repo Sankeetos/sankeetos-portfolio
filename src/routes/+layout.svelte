@@ -36,12 +36,8 @@
 			<div class="ms-auto flex items-center gap-3">
 				<DarkModeButton />
 				<div class="flex items-center gap-0">
-					<Kbd.Group class="hidden md:block">
-						{#if isMacOS()}
-							<Kbd.Root>⌘ + B</Kbd.Root>
-						{:else}
-							<Kbd.Root>Ctrl + B</Kbd.Root>
-						{/if}
+					<Kbd.Group class="hidden lg:block">
+						<Kbd.Root>Ctrl + B</Kbd.Root>
 					</Kbd.Group>
 					<Sidebar.Trigger class="ms-auto -me-1 rotate-180" />
 				</div>
