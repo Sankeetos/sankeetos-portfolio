@@ -75,6 +75,6 @@
 	});
 </script>
 
-<div class="absolute top-0 left-0 flex">
-	<canvas id="model-canvas" class="pointer-events-none overflow-hidden border-none"></canvas>
+<div class="pointer-events-none absolute top-0 left-0 flex">
+	<canvas id="model-canvas" class="overflow-hidden border-none"></canvas>
 </div>
