@@ -1,11 +1,4 @@
-import {
-    Camera,
-    House,
-    type Icon,
-    LibraryBig,
-    MonitorIcon,
-    User,
-} from "lucide-svelte";
+import { House, type Icon, MonitorIcon, User } from "lucide-svelte";
 
 type MenuItem = {
     id: string;
