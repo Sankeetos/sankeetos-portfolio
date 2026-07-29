@@ -1,3 +1,8 @@
+<script>
+	import { User, Trophy } from 'lucide-svelte';
+	import Button from '../button/button.svelte';
+</script>
+
 <div class="flex flex-col p-4 pb-15">
 	<h1
 		class="self-start text-3xl font-semibold text-nowrap select-none md:text-6xl lg:text-7xl xl:text-8xl"
@@ -13,11 +18,12 @@
 	</h2>
 </div>
 
-<div class="p-4 md:p-8">
-	<div class="flex flex-col gap-2 text-sm text-gray-600 md:text-xl lg:text-2xl">
-		<p class="w-auto text-ellipsis md:text-clip">
-			Welcome, this is my portfolio. It is currently a work in progress.
-		</p>
-		<p class="font-medium text-purple-600">Please come back later :)</p>
+<div class="justify-items-center p-2 md:w-150 md:p-8">
+	<div class="flex flex-col gap-2 text-sm md:text-xl lg:text-2xl">
+		<p class="w-auto text-ellipsis md:text-clip">Hi, my portfolio is current a WIP.</p>
+	</div>
+	<div>
+		<Button variant="ghost"><User /> About</Button>
+		<Button variant="ghost"><Trophy /> Experience</Button>
 	</div>
 </div>
