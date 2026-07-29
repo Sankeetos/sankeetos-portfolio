@@ -1,17 +1,11 @@
 <script lang="ts">
 	import * as THREE from 'three';
 	import { GLTFLoader } from 'three/examples/jsm/Addons.js';
-	import { FOV, LARGE_SCALE, DEFAULT_MOBILE_BREAKPOINT, SMALL_SCALE } from './constants';
+	import { FOV, LARGE_SCALE, DEFAULT_POSITION, ASPECT_RATIO, WIDTH, HEIGHT } from './constants';
 	import { onMount } from 'svelte';
 	import { asset } from '$app/paths';
 
 	let sankkitModel: THREE.Group<THREE.Object3DEventMap>;
-
-	const WIDTH = window.innerWidth;
-	const HEIGHT = window.innerHeight;
-	// Width of the element divided by the height, to not get a squished image
-	const ASPECT_RATIO = WIDTH / HEIGHT;
-	const DEFAULT_POSITION = new THREE.Vector3(0, 1.5, 0);
 
 	onMount(async () => {
 		const scene = new THREE.Scene();
@@ -24,14 +18,13 @@
 		camera.position.y = 1.4;
 		camera.lookAt(DEFAULT_POSITION);
 		const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, canvas: canvas! });
-		renderer.setSize(window.innerWidth, window.innerHeight);
+		renderer.setSize(WIDTH, HEIGHT);
 
 		// Load the model
 		const glbLoader = new GLTFLoader();
 		const glb = await glbLoader.loadAsync(asset('/purple_man_dance.glb'));
-		glb.scene.scale.setScalar(1 / 2);
 		sankkitModel = glb.scene;
-
+		sankkitModel.scale.set(LARGE_SCALE, LARGE_SCALE, LARGE_SCALE);
 		scene.add(sankkitModel);
 
 		let mixer = new THREE.AnimationMixer(sankkitModel);
@@ -47,34 +40,16 @@
 
 		animate();
 
-		function handleWindowResize() {
-			camera.aspect = WIDTH / HEIGHT;
+		function onWindowResize() {
+			camera.aspect = canvas!.clientWidth / canvas!.clientHeight;
 			camera.updateProjectionMatrix();
-
-			// Scale renderer and camera based on current width
-			if (WIDTH > DEFAULT_MOBILE_BREAKPOINT) {
-				// Mobile or Tablet scales
-				renderer.setSize(WIDTH, HEIGHT);
-				camera.lookAt(DEFAULT_POSITION);
-			} else {
-				// Laptop or Above scales
-				renderer.setSize(window.outerWidth, window.outerHeight);
-				const center = new THREE.Vector3();
-				camera.lookAt(center);
-				camera.position.z = 2;
-				camera.position.y = 1.4;
-			}
-
-			// Update model size based on current width
-			const responsiveScale = WIDTH < DEFAULT_MOBILE_BREAKPOINT ? SMALL_SCALE : LARGE_SCALE;
-			sankkitModel.scale.set(responsiveScale, responsiveScale, responsiveScale);
+			renderer.setSize(WIDTH, HEIGHT);
+			renderer.render(scene, camera);
 		}
-		window.addEventListener('resize', handleWindowResize, false);
-
-		handleWindowResize();
+		window.addEventListener('resize', onWindowResize, false);
 	});
 </script>
 
-<div class="pointer-events-none absolute top-0 left-0 flex">
+<div class="fle pointer-events-none absolute top-0 left-0">
 	<canvas id="model-canvas" class="overflow-hidden border-none"></canvas>
 </div>
