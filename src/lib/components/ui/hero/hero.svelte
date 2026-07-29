@@ -12,7 +12,7 @@
 
 	<h2
 		class="text-stroke-small md:text-stroke -mt-4 ml-[30vw] font-pinyon text-4xl font-bold text-nowrap
-		text-purple-600 select-none md:-mt-6 md:ml-[40vwß] md:text-6xl lg:-mt-8 lg:ml-[40vw] lg:text-7xl xl:-mt-9 xl:ml-[21vw] xl:text-8xl"
+		text-purple-600 select-none md:-mt-6 md:ml-[40vw] md:text-6xl lg:-mt-8 lg:ml-[40vw] lg:text-7xl xl:-mt-9 xl:ml-[21vw] xl:text-8xl"
 	>
 		Software Engineer
 	</h2>
