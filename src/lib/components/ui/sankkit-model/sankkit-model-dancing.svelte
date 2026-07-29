@@ -7,26 +7,29 @@
 
 	let sankkitModel: THREE.Group<THREE.Object3DEventMap>;
 
+	const WIDTH = window.innerWidth;
+	const HEIGHT = window.innerHeight;
+	// Width of the element divided by the height, to not get a squished image
+	const ASPECT_RATIO = WIDTH / HEIGHT;
+	const DEFAULT_POSITION = new THREE.Vector3(0, 1.5, 0);
+
 	onMount(async () => {
 		const scene = new THREE.Scene();
 
 		// Setup renderer to be inside of the canvas
 		const canvas = document.getElementById('model-canvas');
 
-		// Width of the element divded by the height, to not get a squished image
-		const ASPECT_RATIO = window.innerWidth / window.innerHeight;
-
 		const camera = new THREE.PerspectiveCamera(FOV, ASPECT_RATIO, 0.1, 80);
 		camera.position.z = 2;
 		camera.position.y = 1.4;
-		const defaultPosition = new THREE.Vector3(0, 1.5, 0);
-		camera.lookAt(defaultPosition);
+		camera.lookAt(DEFAULT_POSITION);
 		const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, canvas: canvas! });
 		renderer.setSize(window.innerWidth, window.innerHeight);
 
 		// Load the model
 		const glbLoader = new GLTFLoader();
 		const glb = await glbLoader.loadAsync(asset('/purple_man_dance.glb'));
+		glb.scene.scale.setScalar(1 / 2);
 		sankkitModel = glb.scene;
 
 		scene.add(sankkitModel);
@@ -45,17 +48,14 @@
 		animate();
 
 		function handleWindowResize() {
-			const width = window.innerWidth;
-			const height = window.innerHeight;
-
-			camera.aspect = width / height;
+			camera.aspect = WIDTH / HEIGHT;
 			camera.updateProjectionMatrix();
 
 			// Scale renderer and camera based on current width
-			if (width > DEFAULT_MOBILE_BREAKPOINT) {
+			if (WIDTH > DEFAULT_MOBILE_BREAKPOINT) {
 				// Mobile or Tablet scales
-				renderer.setSize(width, height);
-				camera.lookAt(defaultPosition);
+				renderer.setSize(WIDTH, HEIGHT);
+				camera.lookAt(DEFAULT_POSITION);
 			} else {
 				// Laptop or Above scales
 				renderer.setSize(window.outerWidth, window.outerHeight);
@@ -66,7 +66,7 @@
 			}
 
 			// Update model size based on current width
-			const responsiveScale = width < DEFAULT_MOBILE_BREAKPOINT ? SMALL_SCALE : LARGE_SCALE;
+			const responsiveScale = WIDTH < DEFAULT_MOBILE_BREAKPOINT ? SMALL_SCALE : LARGE_SCALE;
 			sankkitModel.scale.set(responsiveScale, responsiveScale, responsiveScale);
 		}
 		window.addEventListener('resize', handleWindowResize, false);
