@@ -50,6 +50,6 @@
 	});
 </script>
 
-<div class="fle pointer-events-none absolute top-0 left-0">
+<div class="pointer-events-none absolute top-0 left-0 flex">
 	<canvas id="model-canvas" class="overflow-hidden border-none"></canvas>
 </div>
