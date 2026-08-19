@@ -1,24 +1,33 @@
 <script lang="ts">
 	import * as THREE from 'three';
 	import { GLTFLoader } from 'three/examples/jsm/Addons.js';
-	import { FOV, LARGE_SCALE, DEFAULT_POSITION, ASPECT_RATIO, WIDTH, HEIGHT } from './constants';
-	import { onMount } from 'svelte';
+	import { FOV, LARGE_SCALE, DEFAULT_POSITION } from './constants';
+	import { onMount, onDestroy } from 'svelte';
 	import { asset } from '$app/paths';
 
+	let canvasEl: HTMLCanvasElement;
 	let sankkitModel: THREE.Group<THREE.Object3DEventMap>;
 
 	onMount(async () => {
 		const scene = new THREE.Scene();
+		const canvas = canvasEl;
 
-		// Setup renderer to be inside of the canvas
-		const canvas = document.getElementById('model-canvas');
+		const getSize = () => {
+			const rect = canvas.getBoundingClientRect();
+			return { width: rect.width, height: rect.height };
+		};
 
-		const camera = new THREE.PerspectiveCamera(FOV, ASPECT_RATIO, 0.1, 80);
+		const { width, height } = getSize();
+
+		const camera = new THREE.PerspectiveCamera(FOV, width / height, 0.1, 80);
 		camera.position.z = 2;
 		camera.position.y = 1.4;
 		camera.lookAt(DEFAULT_POSITION);
-		const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, canvas: canvas! });
-		renderer.setSize(WIDTH, HEIGHT);
+
+		const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, canvas });
+		renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+		// The `false` here is important: it stops three.js from writing inline  width/height styles onto the canvas.
+		renderer.setSize(width, height, false);
 
 		// Load the model
 		const glbLoader = new GLTFLoader();
@@ -27,29 +36,45 @@
 		sankkitModel.scale.set(LARGE_SCALE, LARGE_SCALE, LARGE_SCALE);
 		scene.add(sankkitModel);
 
-		let mixer = new THREE.AnimationMixer(sankkitModel);
-
-		let action = mixer.clipAction(glb.animations[0], sankkitModel);
+		const mixer = new THREE.AnimationMixer(sankkitModel);
+		const action = mixer.clipAction(glb.animations[0], sankkitModel);
 		action.play();
 
-		function animate() {
-			requestAnimationFrame(animate);
-			mixer.update(1 / 100);
+		const timer = new THREE.Timer();
+		timer.connect(document); // uses the Page Visibility API to avoid a huge delta on tab switch
+		let frameId: number;
+
+		function animate(timestamp: number) {
+			frameId = requestAnimationFrame(animate);
+			timer.update(timestamp);
+			mixer.update(timer.getDelta());
 			renderer.render(scene, camera);
 		}
+		frameId = requestAnimationFrame(animate);
 
-		animate();
-
-		function onWindowResize() {
-			camera.aspect = canvas!.clientWidth / canvas!.clientHeight;
+		function onResize() {
+			const { width, height } = getSize();
+			if (width === 0 || height === 0) return;
+			camera.aspect = width / height;
 			camera.updateProjectionMatrix();
-			renderer.setSize(WIDTH, HEIGHT);
-			renderer.render(scene, camera);
+			renderer.setSize(width, height, false);
+			renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 		}
-		window.addEventListener('resize', onWindowResize, false);
+
+		// ResizeObserver catches container/layout resizes too, not just
+		// window resizes (e.g. a sidebar toggling, a flex reflow).
+		const resizeObserver = new ResizeObserver(onResize);
+		resizeObserver.observe(canvas);
+
+		onDestroy(() => {
+			cancelAnimationFrame(frameId);
+			resizeObserver.disconnect();
+			timer.disconnect();
+			renderer.dispose();
+		});
 	});
 </script>
 
-<div class="fle pointer-events-none absolute top-0 left-0">
-	<canvas id="model-canvas" class="overflow-hidden border-none"></canvas>
+<div class="pointer-events-none absolute top-0 left-0 h-full w-full">
+	<canvas bind:this={canvasEl} class="h-full w-full overflow-hidden border-none"></canvas>
 </div>
