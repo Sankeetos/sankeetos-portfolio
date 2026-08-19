@@ -1,11 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Button from '$lib/components/ui/button/button.svelte';
+	import { resolve } from '$app/paths';
 </script>
 
-<div class="fixed flex h-full w-full content-center items-center justify-center">
+<div class="fixed flex h-full w-full content-center items-center justify-center gap-4">
 	<p class="font-pinyon text-6xl font-semibold">Error</p>
-	<Button variant="link" class="justify-center text-6xl" href="/">
-		{page.status}
-	</Button>
+	<button class="justify-center text-6xl hover:underline">
+		<a href={resolve('/')}>
+			{page.status}
+		</a>
+	</button>
 </div>
