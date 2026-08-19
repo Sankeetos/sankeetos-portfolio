@@ -1,9 +1,5 @@
 <script lang="ts">
-	import AppSidebar from '$lib/components/app-sidebar.svelte';
-	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
 	import './layout.css';
-	import * as Kbd from '$lib/components/ui/kbd/index.js';
-	import { DarkModeButton } from '$lib/components';
 	import { ModeWatcher } from 'mode-watcher';
 	import Icon from '@iconify/svelte';
 	import { onMount } from 'svelte';
@@ -28,26 +24,9 @@
 </script>
 
 <ModeWatcher />
-
-<Sidebar.Provider open={false}>
-	<Sidebar.Inset>
-		<header class="fixed flex h-16 shrink-0 items-center gap-2 place-self-end px-4 pl-10">
-			<div class="ms-auto flex items-center gap-3">
-				<DarkModeButton />
-				<div class="flex items-center gap-0">
-					<Kbd.Group class="hidden lg:block">
-						<Kbd.Root>Ctrl + B</Kbd.Root>
-					</Kbd.Group>
-					<Sidebar.Trigger class="ms-auto -me-1 rotate-180" />
-				</div>
-			</div>
-		</header>
-		<div class="flex w-full max-w-7xl shrink-0 grow flex-col pt-10 md:p-5">
-			{@render children()}
-		</div>
-	</Sidebar.Inset>
-	<AppSidebar side="right" />
-</Sidebar.Provider>
+<div>
+	{@render children()}
+</div>
 
 <footer
 	class="footer fixed inset-x-0 bottom-5 flex w-full flex-col items-center justify-center gap-2 md:flex-row md:justify-between md:px-10"
