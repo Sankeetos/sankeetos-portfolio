@@ -45,6 +45,7 @@ This site is prerendered as a static site (via `adapter-static`) and deployed to
 src/
 ├── routes/     # Pages
 ├── lib/        # Reusable components, assets, utils
-├── static/     # GLB model files
 └── app.html    # App shell
+static/         # GLB model files
+
 ```
